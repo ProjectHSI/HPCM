@@ -1,0 +1,35 @@
+{
+  "dependencies": [
+    {
+      "name": "imgui",
+      "features": [
+        "docking-experimental",
+        "sdl2-binding",
+        "sdl2-renderer-binding",
+        "freetype-lunasvg",
+        "freetype"
+      ]
+    },
+    {
+      "name": "protobuf",
+      "features": [
+        "zlib"
+      ]
+    },
+    {
+      "name": "sdl2",
+      "features": [
+        "vulkan"
+      ]
+    },
+    "sdl2-gfx",
+    "sdl2-image",
+    "sdl2-mixer",
+    {
+      "name": "sdl2-ttf",
+      "features": [
+        "harfbuzz"
+      ]
+    }
+  ]
+}

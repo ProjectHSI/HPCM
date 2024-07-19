@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package CellMachine.Settings;
+
+enum WindowType {
+	Windowed = 0;
+	BorderlessWindowed = 1;
+	FullScreen = 2;
+}
+
+message Settings {
+	optional WindowType windowType = 1;
+	optional uint32 resolutionX = 2;
+	optional uint32 resolutionY = 3;
+}

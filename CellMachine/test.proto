@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package CellMachine.Test;
+
+message Test {
+	string name = 1;
+}
