@@ -19,13 +19,15 @@ endif()
 
 project ("HPCM")
 
-find_package(SDL2 CONFIG REQUIRED)
-find_package(SDL2_image CONFIG REQUIRED)
-find_package(SDL2_mixer CONFIG REQUIRED)
-find_package(SDL2_ttf CONFIG REQUIRED)
-find_package(protobuf CONFIG REQUIRED)
-find_package(imgui CONFIG REQUIRED)
-find_package(sdl2-gfx CONFIG REQUIRED)
+if (NOT HPCM_NO_BUILD_TARGETS)
+	find_package(SDL2 CONFIG REQUIRED)
+	find_package(SDL2_image CONFIG REQUIRED)
+	find_package(SDL2_mixer CONFIG REQUIRED)
+	find_package(SDL2_ttf CONFIG REQUIRED)
+	find_package(protobuf CONFIG REQUIRED)
+	find_package(imgui CONFIG REQUIRED)
+	find_package(sdl2-gfx CONFIG REQUIRED)
+endif()
 
 # Include sub-projects.
 if(NOT ProjectHSIBot_NO_BUILD_TARGETS)
