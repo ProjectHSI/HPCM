@@ -1,0 +1,68 @@
+name: Doxygen
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+    
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Export GitHub Actions cache environment variables
+        uses: actions/github-script@v7
+        with:
+          script: |
+            core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
+            core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: doxygen-install
+        uses: ssciwr/doxygen-install@v1.5.0
+
+      - name: Configure CMake
+        run: >
+          cmake -B ${{ github.workspace }}/build
+          -DCMAKE_CXX_COMPILER=clang++
+          -DCMAKE_C_COMPILER=clang
+          --preset x64-release
+          -DProjectHSIBot_NO_BUILD_TARGETS=YES
+          -S ${{ github.workspace }}
+
+      - name: Build Docs
+        run: >
+          cmake --build ${{ github.workspace }}/build
+          -t ProjectHSI-Bot-Docs
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3.0.1
+        with:
+          path: '${{ github.workspace }}/build/ProjectHSI-Bot-Docs/HTML'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build-docs
+    if: '${{ github.ref_name == ''main'' }}'
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
