@@ -112,20 +112,20 @@ jobs:
       - name: Copy Build Artifacts For Windows
         if: ${{ matrix.os == 'windows-latest' }}
         run: |
-          Copy-Item -Path ${{ github.workspace }}/build/ProjectHSI-Bot/Release/ProjectHSI-Bot.exe -Destination ${{ github.workspace }}/dist/ProjectHSI-Bot.exe
-          Copy-Item -Path ${{ github.workspace }}/build/third_party/SDL/Release/SDL2.dll -Destination ${{ github.workspace }}/dist/SDL2.dll
-          Copy-Item -Path ${{ github.workspace }}/build/ProjectHSI-Bot-Interface-Default-SDL-GUI/Release//ProjectHSI-Bot-Interface-Default-SDL-GUI.exe -Destination ${{ github.workspace }}/dist/modules//ProjectHSI-Bot-Interface-Default-SDL-GUI.exe
+          Copy-Item -Recursive -Path ${{ github.workspace }}/build/ProjectHSI-Bot/Release/ProjectHSI-Bot.exe -Destination ${{ github.workspace }}/dist/ProjectHSI-Bot.exe
+          Copy-Item -Recursive -Path ${{ github.workspace }}/build/third_party/SDL/Release/SDL2.dll -Destination ${{ github.workspace }}/dist/SDL2.dll
+          Copy-Item -Recursive -Path ${{ github.workspace }}/build/ProjectHSI-Bot-Interface-Default-SDL-GUI/Release//ProjectHSI-Bot-Interface-Default-SDL-GUI.exe -Destination ${{ github.workspace }}/dist/modules//ProjectHSI-Bot-Interface-Default-SDL-GUI.exe
 
       - name: Copy Build Artifacts For MacOS
         if: ${{ matrix.os == 'macos-latest' }}
         run: |
-          cp ${{ github.workspace }}/build/HPCM ${{ github.workspace }}/dist/
+          cp -r ${{ github.workspace }}/build/HPCM ${{ github.workspace }}/dist/
 #          cp ${{ github.workspace }}/build/third_party/SDL/libSDL2-2.0.dylib ${{ github.workspace }}/dist/libSDL2-2.0.dylib
 
       - name: Copy Build Artifacts For Linux
         if: ${{ matrix.os == 'ubuntu-latest' }}
         run: |
-          cp ${{ github.workspace }}/build/HPCM ${{ github.workspace }}/dist/
+          cp -r ${{ github.workspace }}/build/HPCM ${{ github.workspace }}/dist/
 #          cp ${{ github.workspace }}/build/third_party/SDL/libSDL2-2.0.so ${{ github.workspace }}/dist/libSDL2-2.0.so
 
       - name: Upload Build Artifacts
