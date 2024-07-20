@@ -30,7 +30,7 @@ if (NOT HPCM_NO_BUILD_TARGETS)
 endif()
 
 # Include sub-projects.
-if(NOT ProjectHSIBot_NO_BUILD_TARGETS)
+if(NOT HPCM_NO_BUILD_TARGETS)
 	add_subdirectory("HPCM")
 endif()
 
