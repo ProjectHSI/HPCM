@@ -107,7 +107,8 @@ jobs:
       - name: Create Output Directory
         run: |
           mkdir ${{ github.workspace }}/dist/
-          mkdir ${{ github.workspace }}/dist/modules/
+
+      - run: ls -ral
 
       - name: Copy Build Artifacts For Windows
         if: ${{ matrix.os == 'windows-latest' }}
