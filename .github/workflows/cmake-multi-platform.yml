@@ -131,7 +131,7 @@ jobs:
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4.0.0
         with:
-          name: ${{ matrix.os }}-${{ matrix.c_compiler }}-${{ github.sha }}
+          name: ${{ matrix.os }}-${{ matrix.build_arch }}-${{ matrix.build_type }}-${{ matrix.c_compiler }}-${{ github.sha }}
           path: |
             ${{ github.workspace }}/dist/
           if-no-files-found: error
