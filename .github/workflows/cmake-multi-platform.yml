@@ -108,7 +108,7 @@ jobs:
         run: |
           mkdir ${{ github.workspace }}/dist/
 
-      - run: ls -Recurse
+      - run: ls -Recurse ${{ github.workspace }}/build/HPCM/${{ matrix.build-type }}/*
         if: ${{ matrix.os == 'windows-latest' }}
 
       - name: Copy Build Artifacts For Windows
