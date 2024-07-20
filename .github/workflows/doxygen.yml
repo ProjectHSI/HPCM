@@ -53,7 +53,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3.0.1
         with:
-          path: '${{ github.workspace }}/build/ProjectHSI-Bot-Docs/HTML'
+          path: '${{ github.workspace }}/build/HPCM-Docs/HTML'
 
   deploy:
     environment:

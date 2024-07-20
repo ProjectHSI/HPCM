@@ -96,6 +96,7 @@ jobs:
           -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
           --preset ${{ matrix.build_arch }}-${{ matrix.build_type }}
           -S ${{ github.workspace }}
+          -G Ninja
 
       - name: Build
         run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config -${{ matrix.build_type }}
