@@ -42,7 +42,7 @@ jobs:
           -DCMAKE_CXX_COMPILER=clang++
           -DCMAKE_C_COMPILER=clang
           --preset x64-release
-          -DProjectHSIBot_NO_BUILD_TARGETS=YES
+          -DHPCM_NO_BUILD_TARGETS=YES
           -S ${{ github.workspace }}
 
       - name: Build Docs
