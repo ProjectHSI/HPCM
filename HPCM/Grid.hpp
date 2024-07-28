@@ -6,12 +6,15 @@ This file declares the CellMachine::Grid::Grid class, among other declarations i
 
 #pragma once
 
+#include "Blocks/BlockAbstract.hpp"
+#include <cassert>
 #include <cstdint>
 #include <memory>
+#include <optional>
 #include <SDL_render.h>
 #include <thread>
 #include <utility>
-#include <cassert>
+#include <vector>
 
 namespace CellMachine {
 	namespace Grid {
