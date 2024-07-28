@@ -26,7 +26,7 @@ namespace CellMachine {
 				/*!
 				\brief Called when an object is to act. You should modify the grid here.
 				*/
-				virtual void act(CellMachine::Grid::Grid &grid) = 0;
+				//virtual void act(CellMachine::Grid::Grid grid) = 0;
 
 				/*!
 				\brief Called when an object is to render it's cell.
