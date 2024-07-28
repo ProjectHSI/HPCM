@@ -57,7 +57,7 @@ namespace CellMachine {
 			*/
 			uint32_t sizeY;
 
-			std::vector<std::optional<CellMachine::Blocks::BlockAbstract::Block>> blocks;
+			//std::vector<std::optional<CellMachine::Blocks::BlockAbstract::Block>> blocks;
 
 			//private void calculateSize()
 
@@ -82,7 +82,7 @@ namespace CellMachine {
 			\returns A std::pair containing the XY position of the cell. First member is the X position, second member is the Y position.
 			*/
 			inline std::pair<uint32_t, uint32_t> calculatePositionFromIndex(size_t index) const {
-				assert(index > blocks.size());
+				//assert(index > blocks.size());
 
 				return { index % sizeX, index / sizeY };
 			}
