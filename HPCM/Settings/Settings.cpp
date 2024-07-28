@@ -1,11 +1,11 @@
-#include "ApplicationContext.hpp"
+#include "../ApplicationContext.hpp"
 #include "Settings.hpp"
 #include <cstdio>
 #include <filesystem>
 #include <fstream>
 #include <iosfwd>
 #include <mutex>
-#include <Settings.pb.h>
+#include <Settings/Settings.pb.h>
 #include <stdexcept>
 #include <string>
 #include <thread>
@@ -15,7 +15,7 @@ static std::recursive_mutex settingsLock {};
 
 static std::filesystem::path settingsFilePath = std::filesystem::path {};
 
-CellMachine::Settings::Settings CellMachine::Settings::currentSettings {};
+CellMachine::Settings::Settings::Settings CellMachine::Settings::Settings::currentSettings {};
 
 static void fillInPaths() {
 	if (settingsFilePath.empty()) {
@@ -23,7 +23,7 @@ static void fillInPaths() {
 	}
 }
 
-void CellMachine::Settings::load() {
+void CellMachine::Settings::Settings::load() {
 	std::lock_guard settingsLockGuard(settingsLock);
 
 	fillInPaths();
@@ -45,7 +45,7 @@ void CellMachine::Settings::load() {
 	bool queueSave = false;
 
 	if (!currentSettings.has_windowtype()) {
-		currentSettings.set_windowtype(CellMachine::Settings::WindowType::Windowed);
+		currentSettings.set_windowtype(CellMachine::Settings::Settings::WindowType::Windowed);
 		queueSave = true;
 	}
 
@@ -61,11 +61,11 @@ void CellMachine::Settings::load() {
 
 	if (queueSave) {
 		//if (!settingsLock.try_lock()) settingsLockGuard.~lock_guard(); // needed to run the operation below & prevent errors.
-		CellMachine::Settings::save();
+		CellMachine::Settings::Settings::save();
 	}
 }
 
-void CellMachine::Settings::save() {
+void CellMachine::Settings::Settings::save() {
 	std::lock_guard settingsLockGuard(settingsLock);
 
 	fillInPaths();
@@ -78,6 +78,6 @@ void CellMachine::Settings::save() {
 	}
 }
 
-void CellMachine::Settings::saveAsync() {
-	std::thread saveThread(CellMachine::Settings::save);
+void CellMachine::Settings::Settings::saveAsync() {
+	std::thread saveThread(CellMachine::Settings::Settings::save);
 }

@@ -1,6 +1,8 @@
 syntax = "proto3";
 
-package CellMachine.Settings;
+package CellMachine.Settings.Settings;
+
+option optimize_for = LITE_RUNTIME;
 
 enum WindowType {
 	Windowed = 0;

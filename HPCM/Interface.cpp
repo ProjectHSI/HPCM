@@ -1,25 +1,25 @@
 #include "Interface.hpp"
-#include "Settings.hpp"
+#include "Settings/Settings.hpp"
 #include <SDL_error.h>
 #include <SDL_render.h>
 #include <SDL_video.h>
-#include <Settings.pb.h>
+#include <Settings/Settings.pb.h>
 #include <stdexcept>
 
 SDL_Window *CellMachine::Interface::sdlWindow;
 SDL_Renderer *CellMachine::Interface::sdlRenderer;
 
 void CellMachine::Interface::createWindow() {
-	auto settingsWindowType = CellMachine::Settings::currentSettings.windowtype();
+	auto settingsWindowType = CellMachine::Settings::Settings::currentSettings.windowtype();
 
 	sdlWindow = SDL_CreateWindow("HPCM",
-		NULL,
-		NULL,
-		CellMachine::Settings::currentSettings.resolutionx(),
-		CellMachine::Settings::currentSettings.resolutiony(),
+		SDL_WINDOWPOS_UNDEFINED,
+		SDL_WINDOWPOS_UNDEFINED,
+		CellMachine::Settings::Settings::currentSettings.resolutionx(),
+		CellMachine::Settings::Settings::currentSettings.resolutiony(),
 		(
-		(settingsWindowType == CellMachine::Settings::WindowType::BorderlessWindowed ? SDL_WINDOW_BORDERLESS : 0) |
-		(settingsWindowType == CellMachine::Settings::WindowType::FullScreen ? SDL_WINDOW_FULLSCREEN : 0)
+		(settingsWindowType == CellMachine::Settings::Settings::WindowType::BorderlessWindowed ? SDL_WINDOW_BORDERLESS : 0) |
+		(settingsWindowType == CellMachine::Settings::Settings::WindowType::FullScreen ? SDL_WINDOW_FULLSCREEN : 0)
 	));
 
 	if (sdlWindow == NULL) {

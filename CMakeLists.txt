@@ -9,15 +9,9 @@ if (POLICY CMP0141)
   set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
 endif()
 
-option(HPCM_NO_BUILD_TARGETS "Disables all builds targets, and only includes the HPCM-Shared documentation target (if supported by the system). Note that the documentation can still be generated with this option disabled (assuming your system has Doxygen installed)." FALSE)
-
-if (HPCM_NO_BUILD_TARGETS)
-	# If we don't want to build targets, vcpkg has no business here, since it only installs compilation dependencies.
-	# So we disable vcpkg here.
-	set(CMAKE_TOOLCHAIN_FILE "")
-endif()
-
 project ("HPCM")
+
+option(HPCM_NO_BUILD_TARGETS "Disables all builds targets, and only includes the HPCM-Shared documentation target (if supported by the system). Note that the documentation can still be generated with this option disabled (assuming your system has Doxygen installed)." FALSE)
 
 if (NOT HPCM_NO_BUILD_TARGETS)
 	find_package(SDL2 CONFIG REQUIRED)

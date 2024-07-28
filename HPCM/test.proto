@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package CellMachine.Test;
 
+option optimize_for = LITE_RUNTIME;
+
 message Test {
 	string name = 1;
 }
